@@ -28,28 +28,24 @@ data:extend({
     selection_box = {{-2, -2}, {2, 2}},
     crafting_categories = {"founding", futil.me.smelt() and "smelting" or nil},
     energy_usage = "360kW",
-    drain = "12kW",
     crafting_speed = 4,
     energy_source =
     {
       type = "electric",
       fuel_category = "chemical",
       effectivity = 1,
-      emissions_per_minute = 2,
+      drain = "12kW",
+      emissions_per_minute = {pollution = 2},
       usage_priority = "secondary-input",
     },
-    module_specification =
-    {
-      module_slots = 3,
-      module_info_icon_shift = {0, 0.8}
-    },
+    module_slots = 3,
     allowed_effects = {"consumption", "speed", "productivity", "pollution"},
+    graphics_set ={
     animation =
     {
       layers =
       {
         {
-          -- TODO make a non-hr version
           filename = "__bzfoundry__/graphics/entity/hr-electric-foundry.png",
           priority = "high",
           width = 280,
@@ -57,19 +53,10 @@ data:extend({
           frame_count = 1,
           shift = util.by_pixel(8, 4),
           scale = 0.5,
-          hr_version =
-          {
-            filename = "__bzfoundry__/graphics/entity/hr-electric-foundry.png",
-            priority = "high",
-            width = 280,
-            height = 239,
-            frame_count = 1,
-            shift = util.by_pixel(8, 4),
-            scale = 0.5,
-          }
         },
       }
     },
+    graphics_set = {
     working_visualisations =
     {
       {
@@ -90,20 +77,6 @@ data:extend({
           direction_count = 1,
           shift = util.by_pixel(8, 4),
           scale = 0.5,
-          hr_version =
-          {
-            filename = "__bzfoundry__/graphics/entity/hr-electric-foundry-animation.png",
-            priority = "extra-high",
-            animation_speed = 0.05,
-            line_length = 4,
-            width = 280,
-            height = 239,
-            frame_count = 4,
-            axially_symmetrical = false,
-            direction_count = 1,
-            shift = util.by_pixel(8, 4),
-            scale = 0.5,
-          }
         },
       },
       {
@@ -137,24 +110,11 @@ data:extend({
           direction_count = 1,
           shift = util.by_pixel(0, 72),
           blend_mode = "additive",
-          hr_version =
-          {
-            filename = "__base__/graphics/entity/steel-furnace/hr-steel-furnace-ground-light.png",
-            priority = "high",
-            line_length = 1,
-            draw_as_sprite = false,
-            width = 152,
-            height = 126,
-            frame_count = 1,
-            direction_count = 1,
-            shift = util.by_pixel(1, 72),
-            blend_mode = "additive",
-            scale = 0.5,
-          }
         },
       },
     },
-
+  },
+  },
   },
 
 })

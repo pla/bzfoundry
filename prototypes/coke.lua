@@ -1,6 +1,6 @@
-local util = require("data-util")
+local util = require("__bzfoundry__.data-util")
 
-if util.me.carbon() == "coke" and not data.raw.item["coke"] then
+if util.me.carbon() == "coke" and not data.raw.item["coke"] and not data.raw.item["kr-coke"]  then
 data:extend({
   {
     type = "item",
@@ -24,9 +24,9 @@ data:extend({
   {
     type = "recipe",
     name = "coke",
-    result = "coke",
+    results = {util.item("coke",1)},
     category = "founding",
-    ingredients = {{"coal", 2}},
+    ingredients = {util.item("coal", 2)},
     energy_required = 3.2,
     enabled=false,
   },
@@ -36,9 +36,9 @@ data:extend({
       {
         type = "recipe",
         name = "woodcoke",
-        result = "coke",
+        results = { util.item("coke",1)},
         category = "founding",
-        ingredients = {{"coal", 1}, {"wood", 2}},
+        ingredients = {util.item("coal", 1), util.item("wood", 2)},
         energy_required = 3.2,
         enabled=false,
         icons = {
@@ -53,9 +53,9 @@ data:extend({
   {
     type = "recipe",
     name = "solid-fuel-from-coal",
-    result = "solid-fuel",
+    results = {util.item("solid-fuel",1)},
     category = "founding",
-    ingredients = {{"coal", 4}},
+    ingredients = {util.item("coal", 4)},
     energy_required = 3.2,
     enabled=false,
   },
@@ -65,9 +65,9 @@ data:extend({
       {
         type = "recipe",
         name = "woodcoke",
-        result = "solid-fuel",
+        results = {util.item("solid-fuel",1)},
         category = "founding",
-        ingredients = {{"coal", 3}, {"wood", 2}},
+        ingredients = {util.item("coal", 3), util.item("wood", 2)},
         energy_required = 3.2,
         enabled=false,
         icons = {

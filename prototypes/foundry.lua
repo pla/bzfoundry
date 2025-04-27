@@ -1,11 +1,11 @@
-local util = require("data-util")
+local util = require("__bzfoundry__.data-util")
 
-local foundry_ingredients = {{"stone-brick", 20}, {"iron-plate", 10}, {"copper-plate", 5}}
-if mods.bzlead then table.insert(foundry_ingredients, {"lead-plate", 8}) end
+local foundry_ingredients = {util.item("stone-brick", 20), util.item("iron-plate", 10), util.item("copper-plate", 5)}
+if mods.bzlead then table.insert(foundry_ingredients, util.item("lead-plate", 8)) end
 if mods.Krastorio2 or mods["aai-industry"] then
-  table.insert(foundry_ingredients, {"sand", 10})
+  table.insert(foundry_ingredients, util.item("kr-sand", 10))
 elseif data.raw.item["silica"] and data.raw.technology["silica-processing"] then
-  table.insert(foundry_ingredients, {"silica", 20})
+  table.insert(foundry_ingredients, util.item("silica", 20))
 end
 
 data:extend({
@@ -22,7 +22,7 @@ data:extend({
   {
     type = "recipe",
     name = "foundry",
-    result = "foundry",
+    results = {util.item("foundry",1)},
     enabled = false,
     ingredients = foundry_ingredients,
   },
@@ -50,6 +50,8 @@ end
 
 if mods.Krastorio2 then
   util.add_prerequisite("foundry", "kr-stone-processing")
+  util.add_prerequisite("foundry", "automation-science-pack")
+  util.remove_prerequisite("foundry","automation")
 elseif mods["aai-industry"] then
   util.add_prerequisite("foundry", "sand-processing")
 else
@@ -76,15 +78,15 @@ data:extend({
 	},
     type = "recipe",
     name = "electric-foundry",
-    result = "electric-foundry",
+    results = {util.item("electric-foundry",1)},
     enabled = false,
     ingredients = {
-      {"foundry", 1},
-      {"steel-plate", 10},
-      {"processing-unit", 4},
-      {"concrete", 10},
-      (data.raw.item["zirconia"] and {"zirconia", 10} or {"stone-brick", 10}), 
-      (data.raw.item["tungsten-plate"] and {"tungsten-plate", 5} or nil),
+      util.item("foundry", 1),
+      util.item("steel-plate", 10),
+      util.item("processing-unit", 4),
+      util.item("concrete", 10),
+      (data.raw.item["zirconia"] and util.item("zirconia", 10) or util.item("stone-brick", 10)), 
+      (data.raw.item["tungsten-plate"] and util.item("tungsten-plate", 5) or nil),
     },
   },
   {
@@ -98,15 +100,17 @@ data:extend({
     },
     unit = {
       count = 200,
-      ingredients = {{"automation-science-pack", 1},
-                     {"logistic-science-pack", 1},
-                     {"chemical-science-pack", 1},
-                     {"production-science-pack", 1}},
+      ingredients = {
+        {"automation-science-pack", 1},
+        {"logistic-science-pack", 1},
+        {"chemical-science-pack", 1},
+        {"production-science-pack", 1}
+      },
       time = 45,
     },
     order = "foundry",
   },
-   
+
 })
 
 if util.me.founding_plates() then

@@ -30,7 +30,7 @@ end
 function me.carbonrecipe()
   local carbon = me.carbon()
   if carbon == "coke" then
-    return "coke"
+    return mods["Krastorio2"] and "kr-coke" or "coke"
   elseif carbon == "solid-fuel" then
     return "solid-fuel-from-coal"
   end

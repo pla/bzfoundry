@@ -2,7 +2,7 @@ require("util")
 local futil = require("data-util")
 
 local fuel = {"chemical"}
-if mods.Krastorio2 then table.insert(fuel, "vehicle-fuel") end
+if mods.Krastorio2 then table.insert(fuel, "kr-vehicle-fuel") end
 if mods["aai-industry"] then table.insert(fuel, "processed-chemical") end
 
 data:extend({
@@ -39,7 +39,7 @@ data:extend({
       type = "burner",
       fuel_categories = fuel,
       effectivity = 1,
-      emissions_per_minute = 8,
+      emissions_per_minute = {pollution = 8},
       fuel_inventory_size = 1,
       smoke =
       {
@@ -52,19 +52,12 @@ data:extend({
         }
       }
     },
+    graphics_set = {
     animation =
     {
       layers =
       {
         {
-          filename = "__bzfoundry__/graphics/entity/foundry.png",
-          priority = "high",
-          width = 140,
-          height = 120,
-          frame_count = 1,
-          shift = util.by_pixel(8, 4),
-          hr_version =
-          {
             filename = "__bzfoundry__/graphics/entity/hr-foundry.png",
             priority = "high",
             width = 280,
@@ -72,9 +65,9 @@ data:extend({
             frame_count = 1,
             shift = util.by_pixel(8, 4),
             scale = 0.5
-          }
-        },
-      }
+          },
+        
+      },
     },
     working_visualisations =
     {
@@ -85,7 +78,7 @@ data:extend({
         west_position = {0.0, 0.0},
         animation =
         {
-          filename = "__base__/graphics/entity/stone-furnace/hr-stone-furnace-fire.png",
+          filename = "__base__/graphics/entity/stone-furnace/stone-furnace-fire.png",
           priority = "extra-high",
           line_length = 8,
           width = 41,
@@ -95,23 +88,10 @@ data:extend({
           direction_count = 1,
           shift = util.by_pixel(-1, 9),
           scale=1.1,
-          hr_version =
-          {
-            filename = "__base__/graphics/entity/stone-furnace/hr-stone-furnace-fire.png",
-            priority = "extra-high",
-            line_length = 8,
-            width = 41,
-            height = 100,
-            frame_count = 48,
-            axially_symmetrical = false,
-            direction_count = 1,
-            shift = util.by_pixel(-1, 9),
-            scale=1.1,
-          }
         },
       }
     },
-
+  },
   },
 
 })

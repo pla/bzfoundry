@@ -1,5 +1,5 @@
 local util = require("data-util")
-require("refractory-updates")
+-- require("refractory-updates")
 
 -- Prevent production deadlock
 if mods.Bio_Industries then
