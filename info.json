@@ -1,7 +1,7 @@
 {
     "name": "bzfoundry",
     "version": "0.2.14",
-    "factorio_version": "1.1",
+    "factorio_version": "2.0",
     "title": "Foundry",
     "author": "Brevven",
     "contact": "",
@@ -12,8 +12,8 @@
       "? bzsilicon",
       "? bztungsten",
       "? bzzirconium",
-      "rusty-locale",
-      "base >= 1.1.0"
+      "? rusty-locale",
+      "base >= 2.0.0"
     ],
     "description": "Adds a foundry building for making alloys, etc.\n\nA standalone accessory from BZ Mods."
 }
