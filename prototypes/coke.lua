@@ -25,7 +25,7 @@ data:extend({
     type = "recipe",
     name = "coke",
     results = {util.item("coke",1)},
-    category = "founding",
+    categories = {"founding"},
     ingredients = {util.item("coal", 2)},
     energy_required = 3.2,
     enabled=false,
@@ -36,37 +36,37 @@ data:extend({
       {
         type = "recipe",
         name = "woodcoke",
-        results = { util.item("coke",1)},
-        category = "founding",
-        ingredients = {util.item("coal", 1), util.item("wood", 2)},
+        results = { util.item("coke", 1) },
+        categories = { "founding" },
+        ingredients = { util.item("coal", 1), util.item("wood", 2) },
         energy_required = 3.2,
-        enabled=false,
+        enabled = false,
         icons = {
-          { icon = "__bzfoundry__/graphics/icons/coke-icon.png", icon_size = 128},
-          { icon = "__base__/graphics/icons/wood.png", icon_size = 64, scale=0.25, shift={8,-8}},
+          { icon = "__bzfoundry__/graphics/icons/coke-icon.png", icon_size = 128 },
+          { icon = "__base__/graphics/icons/wood.png", icon_size = 64, scale = 0.25, shift = { 8, -8 } },
         },
       },
     })
   end
 elseif util.me.carbon() == "solid-fuel" then
-data:extend({
-  {
-    type = "recipe",
-    name = "solid-fuel-from-coal",
-    results = {util.item("solid-fuel",1)},
-    category = "founding",
-    ingredients = {util.item("coal", 4)},
-    energy_required = 3.2,
-    enabled=false,
-  },
-})
+  data:extend({
+    {
+      type = "recipe",
+      name = "solid-fuel-from-coal",
+      results = { util.item("solid-fuel", 1) },
+      categories = { "founding" },
+      ingredients = { util.item("coal", 4) },
+      energy_required = 3.2,
+      enabled = false,
+    },
+  })
   if util.me.woodcoke() then
     data:extend({
       {
         type = "recipe",
         name = "woodcoke",
         results = {util.item("solid-fuel",1)},
-        category = "founding",
+        categories = {"founding"},
         ingredients = {util.item("coal", 3), util.item("wood", 2)},
         energy_required = 3.2,
         enabled=false,
