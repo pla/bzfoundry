@@ -1,7 +1,9 @@
 local util = require("__bzfoundry__.data-util")
 
-local foundry_ingredients = {util.item("stone-brick", 20), util.item("iron-plate", 10), util.item("copper-plate", 5)}
-if mods.bzlead then table.insert(foundry_ingredients, util.item("lead-plate", 8)) end
+local foundry_ingredients = { util.item("stone-brick", 20), util.item("iron-plate", 10), util.item("copper-plate", 5) }
+if mods.bzlead then
+  table.insert(foundry_ingredients, util.item("lead-plate", 8))
+end
 if mods.Krastorio2 then
   table.insert(foundry_ingredients, util.item("kr-sand", 10))
 elseif mods["aai-industry"] then
@@ -19,12 +21,12 @@ data:extend({
     subgroup = "founding-machines",
     order = "z[foundry]",
     place_result = "foundry",
-    stack_size = 50
+    stack_size = 50,
   },
   {
     type = "recipe",
     name = "foundry",
-    results = {util.item("foundry",1)},
+    results = { util.item("foundry", 1) },
     enabled = false,
     ingredients = foundry_ingredients,
   },
@@ -33,14 +35,14 @@ data:extend({
     name = "foundry",
     icon_size = 256,
     icon = "__bzfoundry__/graphics/icons/technology/foundry.png",
-    prerequisites = {"automation"},
+    prerequisites = { "automation" },
     effects = {
-      {type = "unlock-recipe", recipe = "foundry"},
-      util.me.carbonrecipe() and {type = "unlock-recipe", recipe = util.me.carbonrecipe()},
+      { type = "unlock-recipe", recipe = "foundry" },
+      util.me.carbonrecipe() and { type = "unlock-recipe", recipe = util.me.carbonrecipe() },
     },
     unit = {
       count = 25,
-      ingredients = {{"automation-science-pack", 1}},
+      ingredients = { { "automation-science-pack", 1 } },
       time = 10,
     },
     order = "foundry",
@@ -53,7 +55,7 @@ end
 if mods.Krastorio2 then
   util.add_prerequisite("foundry", "kr-stone-processing")
   util.add_prerequisite("foundry", "automation-science-pack")
-  util.remove_prerequisite("foundry","automation")
+  util.remove_prerequisite("foundry", "automation")
 elseif mods["aai-industry"] then
   util.add_prerequisite("foundry", "sand-processing")
 else
@@ -65,29 +67,29 @@ data:extend({
     type = "item",
     name = "electric-foundry",
     icon = "__bzfoundry__/graphics/icons/electric-foundry.png",
-    icon_size = 128,
+    icon_size = 64,
     subgroup = "founding-machines",
     order = "z[foundryelectric]",
     place_result = "electric-foundry",
-    stack_size = 50
+    stack_size = 50,
   },
   {
-  {
-		type = "bool-setting",
-		name = "bzfoundry-smelt",
-		setting_type = "startup",
-		default_value = false,
-	},
+    {
+      type = "bool-setting",
+      name = "bzfoundry-smelt",
+      setting_type = "startup",
+      default_value = false,
+    },
     type = "recipe",
     name = "electric-foundry",
-    results = {util.item("electric-foundry",1)},
+    results = { util.item("electric-foundry", 1) },
     enabled = false,
     ingredients = {
       util.item("foundry", 1),
       util.item("steel-plate", 10),
       util.item("processing-unit", 4),
       util.item("concrete", 10),
-      (data.raw.item["zirconia"] and util.item("zirconia", 10) or util.item("stone-brick", 10)), 
+      (data.raw.item["zirconia"] and util.item("zirconia", 10) or util.item("stone-brick", 10)),
       (data.raw.item["tungsten-plate"] and util.item("tungsten-plate", 5) or nil),
     },
   },
@@ -96,23 +98,22 @@ data:extend({
     name = "electric-foundry",
     icon_size = 256,
     icon = "__bzfoundry__/graphics/icons/technology/electric-foundry.png",
-    prerequisites = {"automation-3"},
+    prerequisites = { "automation-3" },
     effects = {
-      {type = "unlock-recipe", recipe = "electric-foundry"},
+      { type = "unlock-recipe", recipe = "electric-foundry" },
     },
     unit = {
       count = 200,
       ingredients = {
-        {"automation-science-pack", 1},
-        {"logistic-science-pack", 1},
-        {"chemical-science-pack", 1},
-        {"production-science-pack", 1}
+        { "automation-science-pack", 1 },
+        { "logistic-science-pack", 1 },
+        { "chemical-science-pack", 1 },
+        { "production-science-pack", 1 },
       },
       time = 45,
     },
     order = "foundry",
   },
-
 })
 
 if util.me.founding_plates() then
@@ -121,35 +122,51 @@ if util.me.founding_plates() then
       type = "technology",
       name = "advanced-founding",
       icons = {
-        {icon = "__bzfoundry__/graphics/icons/technology/foundry.png", icon_size = 256},
-        (mods.bzcarbon and
-         { icon = "__bzcarbon__/graphics/icons/graphite-2.png",
-           icon_size = 128, scale=0.5, shift={32, -32}})
-        or (mods.bzsilicon and
-            { icon = "__bzsilicon__/graphics/icons/silica.png",
-              icon_size = 64, scale=1, icon_mipmaps = 3, shift={32, -32}})
-        or (mods.bzzirconium and
-            { icon = "__bzzirconium__/graphics/icons/zirconia.png",
-              icon_size = 128, scale=0.5, shift={32, -32}})
-        or (mods.bzaluminum and
-            { icon = "__bzaluminum__/graphics/icons/alumina.png",
-              icon_size = 128, scale=0.5, shift={32, -32}})
-        or { icon = "__base__/graphics/icons/stone-brick.png",
-             icon_size = 64, scale=1, icon_mipmaps = 4, shift={32, -32}}
+        { icon = "__bzfoundry__/graphics/icons/technology/foundry.png", icon_size = 256 },
+        (mods.bzcarbon and {
+          icon = "__bzcarbon__/graphics/icons/graphite-2.png",
+          icon_size = 128,
+          scale = 0.5,
+          shift = { 32, -32 },
+        }) or (mods.bzsilicon and {
+          icon = "__bzsilicon__/graphics/icons/silica.png",
+          icon_size = 64,
+          scale = 1,
+          icon_mipmaps = 3,
+          shift = { 32, -32 },
+        }) or (mods.bzzirconium and {
+          icon = "__bzzirconium__/graphics/icons/zirconia.png",
+          icon_size = 128,
+          scale = 0.5,
+          shift = { 32, -32 },
+        }) or (mods.bzaluminum and {
+          icon = "__bzaluminum__/graphics/icons/alumina.png",
+          icon_size = 128,
+          scale = 0.5,
+          shift = { 32, -32 },
+        }) or {
+          icon = "__base__/graphics/icons/stone-brick.png",
+          icon_size = 64,
+          scale = 1,
+          icon_mipmaps = 4,
+          shift = { 32, -32 },
+        },
       },
       effects = {},
-      prerequisites = {"electric-foundry", "utility-science-pack"},
+      prerequisites = { "electric-foundry", "utility-science-pack" },
       unit = {
         count = 1000,
-        ingredients = {{"automation-science-pack", 1},
-                       {"logistic-science-pack", 1},
-                       {"chemical-science-pack", 1},
-                       {"production-science-pack", 1},
-                       {"utility-science-pack", 1}},
+        ingredients = {
+          { "automation-science-pack", 1 },
+          { "logistic-science-pack", 1 },
+          { "chemical-science-pack", 1 },
+          { "production-science-pack", 1 },
+          { "utility-science-pack", 1 },
+        },
         time = 60,
       },
       order = "foundry",
-    }
+    },
   })
   if mods["space-exploration"] then
     data:extend({
@@ -157,21 +174,35 @@ if util.me.founding_plates() then
         type = "technology",
         name = "advanced-founding-space",
         icons = {
-          {icon = "__bzfoundry__/graphics/icons/technology/foundry.png", icon_size = 256},
-          (mods.bzcarbon and
-           { icon = "__bzcarbon__/graphics/icons/graphite-2.png",
-             icon_size = 128, scale=0.5, shift={32, -32}})
-          or (mods.bzsilicon and
-              { icon = "__bzsilicon__/graphics/icons/silica.png",
-                icon_size = 64, scale=1, icon_mipmaps = 3, shift={32, -32}})
-          or (mods.bzzirconium and
-              { icon = "__bzzirconium__/graphics/icons/zirconia.png",
-                icon_size = 128, scale=0.5, shift={32, -32}})
-          or (mods.bzaluminum and
-              { icon = "__bzaluminum__/graphics/icons/alumina.png",
-                icon_size = 128, scale=0.5, shift={32, -32}})
-          or { icon = "__base__/graphics/icons/stone-brick.png",
-               icon_size = 64, scale=1, icon_mipmaps = 4, shift={32, -32}}
+          { icon = "__bzfoundry__/graphics/icons/technology/foundry.png", icon_size = 256 },
+          (mods.bzcarbon and {
+            icon = "__bzcarbon__/graphics/icons/graphite-2.png",
+            icon_size = 128,
+            scale = 0.5,
+            shift = { 32, -32 },
+          }) or (mods.bzsilicon and {
+            icon = "__bzsilicon__/graphics/icons/silica.png",
+            icon_size = 64,
+            scale = 1,
+            icon_mipmaps = 3,
+            shift = { 32, -32 },
+          }) or (mods.bzzirconium and {
+            icon = "__bzzirconium__/graphics/icons/zirconia.png",
+            icon_size = 128,
+            scale = 0.5,
+            shift = { 32, -32 },
+          }) or (mods.bzaluminum and {
+            icon = "__bzaluminum__/graphics/icons/alumina.png",
+            icon_size = 128,
+            scale = 0.5,
+            shift = { 32, -32 },
+          }) or {
+            icon = "__base__/graphics/icons/stone-brick.png",
+            icon_size = 64,
+            scale = 1,
+            icon_mipmaps = 4,
+            shift = { 32, -32 },
+          },
         },
         effects = {},
         prerequisites = {
@@ -183,17 +214,17 @@ if util.me.founding_plates() then
         unit = {
           count = 1000,
           ingredients = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"se-rocket-science-pack", 1},
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 },
+            { "se-rocket-science-pack", 1 },
           },
           time = 60,
         },
         order = "foundry",
-      }
+      },
     })
   end
 end
